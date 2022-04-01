@@ -1,0 +1,40 @@
+https://likegeeks.com/mysql-on-linux-beginners-tutorial/
+
+sudo systemctl start mysql
+
+start → enable = enable on startup
+
+sudo mysql -u root -p
+
+
+root = rtrwf123
+voiceapp = vcaPPas$!13123
+driverchannel = drvchpass1313
+
+CREATE USER 'voiceapp'@'localhost' IDENTIFIED BY 'vcaPPas$!13123';
+CREATE DATABASE voiceapp;
+GRANT ALL PRIVILEGES ON voiceapp.* TO 'voiceapp'@'localhost';
+
+alter user 'voiceapp'@'localhost' identified with mysql_native_password by 'vcaPPas$!13123'
+
+
+
+
+CREATE USER 'driverchannel'@'localhost' IDENTIFIED BY 'drvchpass1313';
+CREATE DATABASE driverchannel;
+GRANT ALL PRIVILEGES ON driverchannel.* TO 'driverchannel'@'localhost';
+
+
+use mysql;
+update user set authentication_string=password('vcaPPasuor13123'), plugin='mysql_native_password' where user='voiceapp';
+flush privileges;
+
+
+
+ALTER TABLE control
+  MODIFY key varchar(20) NOT NULL;
+
+SHOW INDEXES FROM control WHERE NOT Non_unique;
+
+SELECT DATA_TYPE from INFORMATION_SCHEMA.COLUMNS where table_schema = ’voiceapp’ and table_name = control
+

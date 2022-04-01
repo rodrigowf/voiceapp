@@ -1,0 +1,6 @@
+
+subscribe top mosquitto server:
+mosquitto_sub -h localhost -t device1
+
+publish to a mosquitto server on a topic:
+mosquitto_pub -h localhost -t test1 -m "test message one yeahhhh"
