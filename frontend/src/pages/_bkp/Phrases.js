@@ -57,7 +57,7 @@ export default function Phrases() {
         return newrow;
     };
 
-    const onReOrderRow = (rowId, dropId) => {
+    const handleReorder = (rowId, dropId) => {
         setLoading(true);
         const originals = rows.slice();
         reOrderRows(rowId, dropId, rows, setRows);
@@ -115,8 +115,8 @@ export default function Phrases() {
 
     const columns = [
         // { field: 'order', headerName: '#', type: 'number', editable: false },
-        { field: 'name', headerName: 'Nome', width: 300, editable: true },
-        { field: 'phrase', headerName: 'Frase', width: 500, editable: true, flex: 1 },
+        { field: 'name', headerName: 'Nome', width: 300, editable: true, sortable: false  },
+        { field: 'phrase', headerName: 'Frase', width: 500, editable: true, sortable: false , flex: 1 },
         {
             field: 'actions',
             type: 'actions',
@@ -143,7 +143,7 @@ export default function Phrases() {
                         { Toolbar: EditToolbar, Row: SortableGridRow, LoadingOverlay: LinearProgress } :
                         { Toolbar: EditToolbar, Row: SortableGridRow }
                     }
-                    componentsProps={{ row: { reOrderRow: onReOrderRow } }}
+                    componentsProps={{ row: { handleReorder } }}
                     experimentalFeatures={{ newEditingApi: true }}
                 />
             </div>

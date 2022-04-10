@@ -12,6 +12,15 @@ const keyword = 'computador';
 const maxInterval = 2300;
 
 
+const urlAudioRec = '/sound/wpp_chat_notify.m4a';
+const urlAudioStop = '/sound/scifi.wav';
+const urlAudioDone = '/sound/correct-answer-tone.wav';
+
+const audioRec = new Audio(urlAudioRec);
+const audioStop = new Audio(urlAudioStop);
+const audioDone = new Audio(urlAudioDone);
+
+
 export const chipStyle = {
     display: 'flex',
     width: 'fit-content',
@@ -62,7 +71,10 @@ const ContSpeechmic = (props) => {
     const onRecognition = () => {
         setRecognizing(false);
         setLastTimeout(null);
-        props.onRecog(transcript);
+        audioStop.play();
+        props.onRecog(transcript).then(()=>{
+            audioDone.play();
+        });
     }
 
     useEffect(() => {
@@ -71,6 +83,7 @@ const ContSpeechmic = (props) => {
             if(lastWord === keyword) {
                 resetTranscript();
                 setRecognizing(true);
+                audioRec.play();
                 setLastTimeout(setTimeout(onRecognition, maxInterval));
             }
         }

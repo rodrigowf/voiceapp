@@ -8,7 +8,7 @@ import {
 
 import Listen from "./pages/Listen";
 import Actions from "./pages/Actions";
-import Phrases from "./pages/Phrases";
+import Speeches from "./pages/Speeches";
 import Associations from "./pages/Associations";
 import AppBar from "./components/AppBar";
 
@@ -23,8 +23,8 @@ function App() {
                     element={<Actions />}
                 />
                 <Route
-                    path="/phrases"
-                    element={<Phrases />}
+                    path="/speeches"
+                    element={<Speeches />}
                 />
                 <Route
                     path="/associations"

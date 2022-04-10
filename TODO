@@ -1,0 +1,60 @@
+TODO
+
+- tela com IconButtons clickaveis para executar cada Ação
+	adicionar campo icone para cada Ação
+	usar ordem já pré determinada no crud de ações
+
+- variáveis:
+	->> versão inicial com RegExp direto na frase mesmo
+	podem ser usadas nas falas e ações como {nomeVariavel}
+	campos: id, nome, palavras, valores
+		- palavras e valores multiplos separados por virgula
+	tipos:
+		ENUM - opções definíveis pelo usuário
+		regexp
+		predefinidas - hora, data, etc..
+
+- salvar configurações em arquivo com Pickle
+- criar uma página para alterá-las
+
+- verificar se aplicação já está aberta ao executar ação hotkey
+	senão abri-la
+
+- trocar o banco de dados do mysql para o sqlite
+	para reduzir a complexidade das dependencias
+	implementar cache em forma de objetos para reduzir numero de acessos ao arquivo
+	transferir bd atual pra lá
+	- DOING....(cache)
+
+- quando estiver editando celulas desabilitar drag'n drop
+
+
+//-------
+
+
+DONE
+
+- colocar efeitos sonoros para avisar que a palavra chave foi detectada
+	- DONE
+
+- Mudar tabela "Frase" (Phrase) para "Fala" (Speech)
+	- DONE
+
+- multiplas frases para cada Fala (separadas por virgula)
+	(fazer um split antes de fazer a comparação caso tenha virgula)
+	- DONE
+
+- comparador de frases:
+	nltk - NOP
+	thefuz - python lib que usa levenshtine distance - DONE
+	bert (sent2vec) - vector embedings para frases - DONE
+
+- sequencia de Ações para cada Associação
+	->> versão inicial usando o crud que já existe
+		considerar mais de uma linha para a mesma fala
+		sequencia determinada pelo campo order ~
+		- DONE
+			-TESTARRRRR!!
+	- usar essa versão básica:
+		modificar sóo a interface pra juntar linhas
+	(inserir no bd mais de uma ação pra cada frase)

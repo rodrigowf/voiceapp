@@ -8,7 +8,7 @@ from init import app, db
 
 class Association(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    phrase_id = db.Column(db.Integer, db.ForeignKey('phrase.id'))
+    speech_id = db.Column(db.Integer, db.ForeignKey('speech.id'))
     action_id = db.Column(db.Integer, db.ForeignKey('action.id'))
     order = db.Column(db.Integer, nullable=False)
 
@@ -16,12 +16,12 @@ class Association(db.Model):
         return '<Association %r>' % self.name
 
 
-# CRUD ---------------------------------------
+# CRUD API -----------------------------------
 
 @app.route('/get_associations')
 def get_associations():
 	assocs = Association.query.order_by(Association.order).all()
-	ret = [{'id': assoc.id, 'phrase_id': assoc.phrase_id, 'action_id': assoc.action_id, 'order': assoc.order} for assoc in assocs]
+	ret = [{'id': assoc.id, 'speech_id': assoc.speech_id, 'action_id': assoc.action_id, 'order': assoc.order} for assoc in assocs]
 	return flask.jsonify(ret)
 
 
@@ -30,21 +30,21 @@ def set_association():
 	if request.method == 'POST':
 		id = request.json['id']
 		if id is None or id == 0:
-			if request.json['phrase_id'] is None or request.json['action_id'] is None:
+			if request.json['speech_id'] is None or request.json['action_id'] is None:
 				return flask.jsonify({'result': 'nothing to show here!'})
 			assoc = Association()
-			assoc.phrase_id = request.json['phrase_id']
+			assoc.speech_id = request.json['speech_id']
 			assoc.action_id = request.json['action_id']
 			assoc.order = request.json['order']
 			db.session.add(assoc)
 			db.session.commit()
 		else:
 			assoc = Association.query.get(id)
-			assoc.phrase_id = request.json['phrase_id']
+			assoc.speech_id = request.json['speech_id']
 			assoc.action_id = request.json['action_id']
 			assoc.order = request.json['order']
 			db.session.commit()
-		return flask.jsonify({'id': assoc.id, 'phrase_id': assoc.phrase_id, 'action_id': assoc.action_id, 'order': assoc.order})
+		return flask.jsonify({'id': assoc.id, 'speech_id': assoc.speech_id, 'action_id': assoc.action_id, 'order': assoc.order})
 	else:
 		return flask.jsonify({'result': 'nothing to show here!'})
 
@@ -67,7 +67,7 @@ def delete_association():
 
 		db.session.commit()
 
-		ret = [{'id': assc.id, 'phrase_id': assc.phrase_id, 'action_id': assc.action_id, 'order': assc.order} for assc in associations]
+		ret = [{'id': assc.id, 'speech_id': assc.speech_id, 'action_id': assc.action_id, 'order': assc.order} for assc in associations]
 		return flask.jsonify({'result': 'success', 'retrows': ret})
 	else:
 		return flask.jsonify({'result': 'error'})
@@ -96,7 +96,7 @@ def reorder_associations():
 
 		db.session.commit()
 
-		ret = [{'id': assoc.id, 'phrase_id': assoc.phrase_id, 'action_id': assoc.action_id, 'order': assoc.order} for assoc in assocs]
+		ret = [{'id': assoc.id, 'speech_id': assoc.speech_id, 'action_id': assoc.action_id, 'order': assoc.order} for assoc in assocs]
 		return flask.jsonify({'result': 'success', 'retrows': ret})
 	else:
 		return flask.jsonify({'result': 'error'})

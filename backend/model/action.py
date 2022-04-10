@@ -28,7 +28,8 @@ def createData(id, name, type, program, parameters, order):
 		'order': order
 	}
 
-# CRUD ---------------------------------
+
+# CRUD API -----------------------------------
 
 @app.route('/get_actions')
 def get_actions():

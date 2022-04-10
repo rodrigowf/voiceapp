@@ -1,5 +1,5 @@
 
-const url = 'http://localhost:8000/';
+const baseUrl = 'http://localhost:8000/';
 
 const options = {
     mode: 'cors', // no-cors, *cors, same-origin
@@ -13,96 +13,59 @@ const options = {
     referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
 }
 
+export async function get(url) {
+    const response = await fetch(baseUrl + url, {
+        method: 'GET',
+        ...options
+    });
+    return response.json();
+}
+export async function post(url, data) {
+    const response = await fetch(baseUrl + url, {
+        method: 'POST',
+        ...options,
+        body: JSON.stringify(data)
+    });
+    return response.json();
+}
 
-// Commands ==============================================
+
+// Phrases ==============================================
 
 export async function sendPhrase(phrase) {
-    const response = await fetch(url+'send_phrase', {
-        method: 'POST', // *GET, POST, PUT, DELETE, etc.
-        ...options,
-        body: JSON.stringify({phrase: phrase}) // body data type must match "Content-Type" header
-    });
-    return response.json();
+    return await post('send_phrase', { phrase });
 }
 
-export async function getPhrases() {
-    const response = await fetch(url+'get_phrases', {
-        method: 'GET',
-        ...options
-    });
-    return response.json();
-}
-
-export async function setPhrase(data) {
-    const response = await fetch(url+'set_phrase', {
-        method: 'POST',
-        ...options,
-        body: JSON.stringify(data)
-    });
-    return response.json();
-}
-
-export async function deletePhrase(data) {
-    const response = await fetch(url+'delete_phrase', {
-        method: 'POST',
-        ...options,
-        body: JSON.stringify(data)
-    });
-    return response.json();
-}
-
-export async function reorderPhrases(data) {
-    const response = await fetch(url+'reorder_phrases', {
-        method: 'POST',
-        ...options,
-        body: JSON.stringify(data)
-    });
-    return response.json();
-}
+export const speechesApi = {
+    getList:  async () => await get('get_speeches'),
+    ordList:  async (data) => await post('reorder_speeches', data),
+    setItem:  async (data) => await post('set_speech', data),
+    delItem:  async (data) => await post('delete_speech', data),
+};
 
 
-// Controls ==============================================
+// Actions ==============================================
 
-export async function getActions() {
-    const response = await fetch(url+'get_actions', {
-        method: 'GET',
-        ...options
-    });
-    return response.json();
-}
-
-export async function setAction(data) {
-    const response = await fetch(url+'set_action', {
-        method: 'POST',
-        ...options,
-        body: JSON.stringify(data)
-    });
-    return response.json();
-}
-
-export async function deleteAction(data) {
-    const response = await fetch(url+'delete_action', {
-        method: 'POST',
-        ...options,
-        body: JSON.stringify(data)
-    });
-    return response.json();
-}
-
-export async function reorderActions(data) {
-    const response = await fetch(url+'reorder_actions', {
-        method: 'POST',
-        ...options,
-        body: JSON.stringify(data)
-    });
-    return response.json();
-}
+export const actionsApi = {
+    getList:  async () => await get('get_actions'),
+    ordList:  async (data) => await post('reorder_actions', data),
+    setItem:  async (data) => await post('set_action', data),
+    delItem:  async (data) => await post('delete_action', data),
+};
 
 
 // Relations =============================================
 
+export const associationsApi = {
+    getList:  async () => await get('get_associations'),
+    ordList:  async (data) => await post('reorder_associations', data),
+    setItem:  async (data) => await post('set_association', data),
+    delItem:  async (data) => await post('delete_association', data),
+};
+
+
 export async function getAssociations() {
-    const response = await fetch(url+'get_associations', {
+    const response = await fetch(baseUrl+'get_associations', {
         method: 'GET',
         ...options
     });
@@ -110,7 +73,7 @@ export async function getAssociations() {
 }
 
 export async function setAssociation(data) {
-    const response = await fetch(url+'set_association', {
+    const response = await fetch(baseUrl+'set_association', {
         method: 'POST',
         ...options,
         body: JSON.stringify(data)
@@ -119,7 +82,7 @@ export async function setAssociation(data) {
 }
 
 export async function deleteAssociation(data) {
-    const response = await fetch(url+'delete_association', {
+    const response = await fetch(baseUrl+'delete_association', {
         method: 'POST',
         ...options,
         body: JSON.stringify(data)
@@ -128,7 +91,7 @@ export async function deleteAssociation(data) {
 }
 
 export async function reorderAssociations(data) {
-    const response = await fetch(url+'reorder_associations', {
+    const response = await fetch(baseUrl+'reorder_associations', {
         method: 'POST',
         ...options,
         body: JSON.stringify(data)

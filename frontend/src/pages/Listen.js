@@ -4,8 +4,6 @@ import {Box, Typography} from "@mui/material";
 import Chip from "@mui/material/Chip";
 
 import { sendPhrase } from "../scripts/api";
-import {wait} from "@testing-library/user-event/dist/utils";
-// import Speechmic from "../components/Speechmic";
 
 const Listen = () => {
 
@@ -14,7 +12,7 @@ const Listen = () => {
     const [color, setColor] = useState("default");
 
 
-    const onRecog = (transcription) => {
+    const onRecog = async (transcription) => {
         let hist = history.slice();
         if (phrase !== "") {
             hist.push({text: phrase, color: color});
@@ -22,7 +20,7 @@ const Listen = () => {
         }
         setPhrase(transcription);
         setColor('default');
-        sendPhrase(transcription).then((result)=> {
+        await sendPhrase(transcription).then((result)=> {
             if("best_match" in result) {
                 setColor('success');
                 setPhrase(transcription + '  ->  ' + result.best_match.name);
@@ -37,7 +35,7 @@ const Listen = () => {
     };
 
     return (
-        <Box>
+        <Box sx={{maxWidth: '1488px', margin: 'auto'}}>
             <Typography variant="h4" component="h1" sx={{display: 'block', textAlign: 'center'}}>Reconhecimento de Fala</Typography>
             <Box>
                 {history.map((el) => {

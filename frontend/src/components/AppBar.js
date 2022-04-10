@@ -14,7 +14,7 @@ import { Link } from "react-router-dom";
 
 const pages = [
     {name: 'Home', link: '/'},
-    {name: 'Frases', link: '/phrases'},
+    {name: 'Falas', link: '/speeches'},
     {name: 'Ações',  link: '/actions'},
     {name: 'Associações',  link: '/associations'},
 ];

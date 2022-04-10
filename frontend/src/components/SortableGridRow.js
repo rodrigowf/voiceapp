@@ -18,9 +18,9 @@ export const reOrderRows = (rowId, dropId, rows, setRows) => {
 };
 
 const SortableGridRow = (props) => {
-    const reOrderRow = props.reOrderRow;
+    const handleReorder = props.handleReorder;
     let newProps = Object.assign({}, props);
-    delete newProps.reOrderRow;
+    delete newProps.handleReorder;
 
     return (
         <GridRow {...newProps}
@@ -36,7 +36,7 @@ const SortableGridRow = (props) => {
                  }}
                  onDragEnd={(e) => {
                      if (DragState.dropId !== -1) {
-                         reOrderRow(DragState.rowId, DragState.dropId);
+                         handleReorder(DragState.rowId, DragState.dropId);
                      }
                      DragState.rowId = -1;
                      DragState.dropId = -1;
