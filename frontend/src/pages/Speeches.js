@@ -17,7 +17,7 @@ const columns = [
     },
 ];
 
-const emptyRow = { id: 0, order: 0, name: '', phrase: '' };
+const emptyRow = { id: 0, order: 0, name: null, phrase: null };
 
 
 export default function Speeches() {

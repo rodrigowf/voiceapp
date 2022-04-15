@@ -11,16 +11,19 @@ export default function SortableGird(props) {
     const [loading, setLoading] = useState(true);
     const [loadingOverlay, setLoadingOverlay] = useState(false);
 
-    useEffect(async () => {
-        setLoading(true);
-        if(preload) await preload();
-        api.getList().then( (data) => {
-            setRows(data);
-            setLoading(false);
-            setLoadingOverlay(true);
-        }, () => {
-            setLoading(false);
-        })
+    useEffect(() => {
+        const fetchData = async () => {
+            setLoading(true);
+            if(preload) await preload();
+            api.getList().then( (data) => {
+                setRows(data);
+                setLoading(false);
+                setLoadingOverlay(true);
+            }, () => {
+                setLoading(false);
+            })
+        };
+        fetchData();
     }, []);
 
     const handleDeleteClick = (id) => (event) => {

@@ -1,5 +1,5 @@
 
-const baseUrl = 'http://localhost:8000/';
+const baseUrl = 'http://192.168.0.110:8000/';
 
 const options = {
     mode: 'cors', // no-cors, *cors, same-origin
@@ -36,6 +36,10 @@ export async function sendPhrase(phrase) {
     return await post('send_phrase', { phrase });
 }
 
+export async function executeAction(id) {
+    return await post('execute_action', { id });
+}
+
 export const speechesApi = {
     getList:  async () => await get('get_speeches'),
     ordList:  async (data) => await post('reorder_speeches', data),
@@ -62,39 +66,3 @@ export const associationsApi = {
     setItem:  async (data) => await post('set_association', data),
     delItem:  async (data) => await post('delete_association', data),
 };
-
-
-export async function getAssociations() {
-    const response = await fetch(baseUrl+'get_associations', {
-        method: 'GET',
-        ...options
-    });
-    return response.json();
-}
-
-export async function setAssociation(data) {
-    const response = await fetch(baseUrl+'set_association', {
-        method: 'POST',
-        ...options,
-        body: JSON.stringify(data)
-    });
-    return response.json();
-}
-
-export async function deleteAssociation(data) {
-    const response = await fetch(baseUrl+'delete_association', {
-        method: 'POST',
-        ...options,
-        body: JSON.stringify(data)
-    });
-    return response.json();
-}
-
-export async function reorderAssociations(data) {
-    const response = await fetch(baseUrl+'reorder_associations', {
-        method: 'POST',
-        ...options,
-        body: JSON.stringify(data)
-    });
-    return response.json();
-}

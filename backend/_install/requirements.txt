@@ -1,0 +1,12 @@
+flask
+flask-cors
+flask-session
+flask-sqlalchemy
+pymysql
+pyautogui
+selenium
+paho-mqtt
+numpy<1.19.0,>=1.16.0
+scipy
+python-Levenshtein
+thefuzz

@@ -13,7 +13,8 @@ import { Link } from "react-router-dom";
 
 
 const pages = [
-    {name: 'Home', link: '/'},
+    {name: 'Falar', link: '/'},
+    {name: 'Botões',  link: '/buttons'},
     {name: 'Falas', link: '/speeches'},
     {name: 'Ações',  link: '/actions'},
     {name: 'Associações',  link: '/associations'},

@@ -6,11 +6,12 @@ import {
     Route
 } from "react-router-dom";
 
+import AppBar from "./components/AppBar";
 import Listen from "./pages/Listen";
 import Actions from "./pages/Actions";
 import Speeches from "./pages/Speeches";
 import Associations from "./pages/Associations";
-import AppBar from "./components/AppBar";
+import Buttons from "./pages/Buttons";
 
 function App() {
     return (
@@ -29,6 +30,10 @@ function App() {
                 <Route
                     path="/associations"
                     element={<Associations />}
+                />
+                <Route
+                    path="/buttons"
+                    element={<Buttons />}
                 />
                 <Route
                     path="/"

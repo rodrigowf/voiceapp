@@ -1,12 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 
-import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
-import ButtonGroup from '@mui/material/ButtonGroup';
 import Chip from '@mui/material/Chip';
 import Box from "@mui/material/Box";
 import MicIcon from '@mui/icons-material/Mic';
+
 
 const keyword = 'computador';
 const maxInterval = 2300;
@@ -19,6 +18,10 @@ const urlAudioDone = '/sound/correct-answer-tone.wav';
 const audioRec = new Audio(urlAudioRec);
 const audioStop = new Audio(urlAudioStop);
 const audioDone = new Audio(urlAudioDone);
+
+audioRec.volume = 0.6;
+audioStop.volume = 0.2;
+audioDone.volume = 0.3;
 
 
 export const chipStyle = {

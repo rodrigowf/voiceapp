@@ -1,8 +1,27 @@
 TODO
 
-- tela com IconButtons clickaveis para executar cada Ação
-	adicionar campo icone para cada Ação
-	usar ordem já pré determinada no crud de ações
+- resolver problema do inserir icone no actions (clique na lista não funciona)
+
+- Tratar erros de conexao e resposta na interface com alerts do mui
+
+- criar crud InternalActions para controlar interface do meu próprio programa, como inserção de frases e ações
+    (só editar lista de ações pré existentes)
+
+
+- carregar todas as configurações de arquivo .py separado - DONE
+    (server ip and port, mqtt configs, palavra chave, silence detection max interval, tipo de comparação)
+- salvar configurações em arquivo com Pickle
+- criar uma página para alterá-las
+
+
+- browser actions
+    - salvar lista de objetos para cada navegador aberto pelo selenium no escopo global
+    - para enviar comandos diferentes para a mesma tab ???????? (como fazer isso da melhor forma???)
+        https://www.selenium.dev/documentation/webdriver/browser/windows/#switching-windows-or-tabs
+    - parameters como: click(<elSelector>), type(<selector>, <text>)
+
+- sequencia de multiplos hotkeys separados por virgula
+    (testar se o espaço já funciona)
 
 - variáveis:
 	->> versão inicial com RegExp direto na frase mesmo
@@ -13,18 +32,6 @@ TODO
 		ENUM - opções definíveis pelo usuário
 		regexp
 		predefinidas - hora, data, etc..
-
-- salvar configurações em arquivo com Pickle
-- criar uma página para alterá-las
-
-- verificar se aplicação já está aberta ao executar ação hotkey
-	senão abri-la
-
-- trocar o banco de dados do mysql para o sqlite
-	para reduzir a complexidade das dependencias
-	implementar cache em forma de objetos para reduzir numero de acessos ao arquivo
-	transferir bd atual pra lá
-	- DOING....(cache)
 
 - quando estiver editando celulas desabilitar drag'n drop
 
@@ -48,6 +55,7 @@ DONE
 	nltk - NOP
 	thefuz - python lib que usa levenshtine distance - DONE
 	bert (sent2vec) - vector embedings para frases - DONE
+	- DONE
 
 - sequencia de Ações para cada Associação
 	->> versão inicial usando o crud que já existe
@@ -58,3 +66,25 @@ DONE
 	- usar essa versão básica:
 		modificar sóo a interface pra juntar linhas
 	(inserir no bd mais de uma ação pra cada frase)
+
+- trocar o banco de dados do mysql para o sqlite
+	para reduzir a complexidade das dependencias
+	implementar cache em forma de objetos para reduzir numero de acessos ao arquivo
+	transferir bd atual pra lá
+	- DONE ALL
+
+- tela com IconButtons clickaveis para executar cada Ação
+	adicionar campo icone para cada Ação - DONE
+	usar ordem já pré determinada no crud de ações
+
+- multiplas aplicações possíveis para a mesma ação - DONE
+- verificar se aplicação já está aberta ao executar ação hotkey
+	senão abrir primeira opção - ou NOPE
+
+- calcular ponto médio entre todos os vetores listados e comparar a distancia do vetor resultante tambem
+    - DONE / TESTING ... (não sei se é uma boa opção)
+
+- mudar action.program to action.destination ou target -> Programa para Destino ou Alvo
+- mudar action.parameters to action.options ou value -> Parametros para Opções ou Valor
+    - DONE
+   
