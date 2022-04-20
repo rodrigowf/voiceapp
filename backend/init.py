@@ -12,6 +12,8 @@ from flask_caching import Cache
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 app = flask.Flask(__name__)
+app = flask.Flask(__name__,
+            static_folder='frontend')
 app.secret_key = b'5oZW6\n$#^#3w3FE3'
 
 # Session config

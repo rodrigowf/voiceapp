@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
+from flask import Flask, send_from_directory
 from sqlalchemy.sql import text, column
 from flask_sqlalchemy_caching import FromCache
 
@@ -36,8 +37,21 @@ def execute_action():
         return flask.jsonify({'result': 'nothing to show here!'})
 
 
+# =========================================================
+
+
+# Serve React App
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def serve(path):
+    if path != "" and os.path.exists(app.static_folder + '/' + path):
+        return send_from_directory(app.static_folder, path)
+    else:
+        return send_from_directory(app.static_folder, 'index.html')
+        
+
 # Para testar o servidor
-@app.route('/')
+@app.route('/test')
 def index():
     try:
         db.session.query(column('1')).from_statement(text('SELECT 1')).all()

@@ -4,7 +4,7 @@ from flask import request
 from init import app, db, cache
 
 
-server_ip = '192.168.0.110'
+server_ip = '192.168.0.109'
 server_port = 8000
 server_debug = True
 
