@@ -9,7 +9,7 @@ from init import app, db, cache
 from model.action import *
 from model.speech import *
 from model.association import *
-from core import fuzz_compare, compare_vectors, process_association, process_action
+from core import fuzz_compare, compare_vectors, process_association, process_action, process_external_action
 
 
 # TODO resolver o compare_vector
