@@ -2,7 +2,7 @@ import os
 import re
 import time
 import numpy as np
-import pyautogui
+#import pyautogui
 import shlex
 import subprocess
 import requests
@@ -142,9 +142,9 @@ def execute_hotkey(target, value):
 		time.sleep(0.5)
 		if ' ' in value:
 			hotkey = value.split(' ')
-			pyautogui.hotkey(*hotkey)
+		#	pyautogui.hotkey(*hotkey)
 		else:
-			pyautogui.press(value)
+		#	pyautogui.press(value)
 
 
 def execute_browser(target, value):
