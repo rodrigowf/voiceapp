@@ -171,7 +171,7 @@ def process_external_action(action_id):
 	if action.type == 'MQTT':
 		mqtt_publish(action.target, action.value)
 	else:
-		url = 'http://192.168.0.110/execute_action'
+		url = 'http://192.168.0.110:8000/execute_action'
 		myobj = {'type': action.type, 'target': action.target, 'value': action.value}
 
 		x = requests.post(url, data = myobj)
