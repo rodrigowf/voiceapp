@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
-from flask import Flask, send_from_directory
+from flask import Flask, send_from_directory, request
 from sqlalchemy.sql import text, column
 from flask_sqlalchemy_caching import FromCache
 

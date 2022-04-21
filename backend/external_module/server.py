@@ -2,6 +2,7 @@
 
 import os
 import flask
+from flask import request
 from flask_cors import CORS, cross_origin
 import pyautogui
 import shlex

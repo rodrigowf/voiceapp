@@ -6,6 +6,7 @@ import numpy as np
 import shlex
 import subprocess
 import requests
+import json
 # from selenium import webdriver
 from mqtt import publish as mqtt_publish
 from thefuzz import fuzz
@@ -172,9 +173,10 @@ def process_external_action(action_id):
 		mqtt_publish(action.target, action.value)
 	else:
 		url = 'http://192.168.0.110:8000/execute_action'
-		myobj = {'type': action.type, 'target': action.target, 'value': action.value}
+		headers = {'content-type': 'application/json'}
+		payload = {'type': action.type, 'target': action.target, 'value': action.value}
 
-		x = requests.post(url, data = myobj)
+		x = requests.post(url, data=json.dumps(payload), headers=headers)
 		
 		return x.text
 
