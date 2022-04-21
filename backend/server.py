@@ -31,7 +31,7 @@ def send_phrase():
 def execute_action():
     if request.method == 'POST':
         action_id = request.json['id']
-        process_action(action_id)
+        process_external_action(action_id)
         return flask.jsonify({'result': 'success'})
     else:
         return flask.jsonify({'result': 'nothing to show here!'})
