@@ -143,7 +143,7 @@ def execute_hotkey(target, value):
 		if ' ' in value:
 			hotkey = value.split(' ')
 		#	pyautogui.hotkey(*hotkey)
-		else:
+		#else:
 		#	pyautogui.press(value)
 
 
