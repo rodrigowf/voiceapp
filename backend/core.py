@@ -5,6 +5,7 @@ import numpy as np
 import pyautogui
 import shlex
 import subprocess
+import requests
 # from selenium import webdriver
 from mqtt import publish as mqtt_publish
 from thefuzz import fuzz
@@ -164,7 +165,22 @@ def process_action(action_id):
 		mqtt_publish(action.target, action.value)
 
 
+def process_external_action(action_id):
+	action = Action.query.options(FromCache(cache)).get(action_id)
+	print(f'Processing Action: {action.name}, of type: {action.type} on target: {action.target}, with value: {action.value}')
+	if action.type == 'MQTT':
+		mqtt_publish(action.target, action.value)
+	else:
+		url = 'http://192.168.0.110/execute_action'
+		myobj = {'type': action.type, 'target': action.target, 'value': action.value}
+
+		x = requests.post(url, data = myobj)
+		
+		return x.text
+
+
 def process_association(speech_id):
 	assocs = Association.query.options(FromCache(cache)).filter_by(speech_id=speech_id).order_by(Association.order).all()
 	for assoc in assocs:
-		process_action(assoc.action_id)
+		process_external_action(assoc.action_id)
+

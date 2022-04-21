@@ -19,6 +19,8 @@ string_comparison_mode = 'str2vec'  # 'words', 'fuzz', 'str2vec'
 detection_keyword = 'computador'
 detection_silence_interval = 2300
 
+external_host = 'http://192.168.0.110'
+
 
 @app.route('/get_configs')
 def get_configs():
