@@ -1,10 +1,6 @@
 from sent2vec.vectorizer import Vectorizer
 
-sentences = [
-    "ligar a luz",
-    "desligar a luz",
-    "acender luz",
-]
+sentences = [ "ligar a luz", "desligar a luz", "acender luz" ]
 vectorizer = Vectorizer(pretrained_weights='distilbert-base-multilingual-cased')
 vectorizer.run(sentences)
 vectors = vectorizer.vectors

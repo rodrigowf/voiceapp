@@ -1,5 +1,12 @@
 TODO
 
+TEXTO:
+
+    /home/rodrigowf/Projects/voiceapp/backend/.venv/lib/python3.9/site-packages/Levenshtein/_levenshtein.c
+    ctrl+f: levenshtein_common
+    linhas: 785, 791 e 730
+
+
 - resolver problema do inserir icone no actions (clique na lista não funciona)
 
 - Tratar erros de conexao e resposta na interface com alerts do mui
